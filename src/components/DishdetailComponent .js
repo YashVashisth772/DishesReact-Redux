@@ -3,6 +3,7 @@ import React from 'react';
 import { Card, CardImg, CardText, CardBody,
     CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import CommentForm22 from './CommentFormComponent';
 
 
 function RenderDish({dish}){
@@ -42,6 +43,7 @@ function RenderComments({comments}){
                     <ul className="list-unstyled">
                         {commentListItems}
                     </ul>
+                    <CommentForm22 />
                 </div>
             )
         }else{
@@ -84,6 +86,7 @@ const DishDetail = (props) => {
 }
 
 
+export default DishDetail;
 
 
 
@@ -154,5 +157,3 @@ const DishDetail = (props) => {
 //     }
 // }
 
-
-export default DishDetail;
