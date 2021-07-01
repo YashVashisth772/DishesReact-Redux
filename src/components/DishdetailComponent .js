@@ -7,6 +7,10 @@ import { Link } from 'react-router-dom';
 import { Button ,Modal, ModalHeader, ModalBody,
     Form, FormGroup, Input, Label , Row, Col} from 'reactstrap';
 import { Control, LocalForm, Errors } from 'react-redux-form';
+import { Loading } from './LoadingComponent';
+import { baseUrl } from '../shared/baseUrl';
+
+
 
 const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !(val) || (val.length <= len);
@@ -103,7 +107,7 @@ function RenderDish({dish}){
         return(
             <div>
                 <Card>
-                    <CardImg top src={dish.image} alt={dish.name} />
+                    <CardImg top src={baseUrl + dish.image} alt={dish.name} />
                     <CardBody>
                     <CardTitle>{dish.name}</CardTitle>
                         <CardText>{dish.description}</CardText>
@@ -166,9 +170,25 @@ function Counter(){
 
 
 const DishDetail = (props) => {
-    // console.log('yash m',props.dish.comments);
-    // console.log('yash cc',props.dish.id)
-    if(props.dish){
+    if (props.isLoading) {
+            return(
+                <div className="container">
+                    <div className="row">            
+                        <Loading />
+                    </div>
+                </div>
+            );
+        }
+        else if (props.errMess) {
+            return(
+                <div className="container">
+                    <div className="row">            
+                        <h4>{props.errMess}</h4>
+                    </div>
+                </div>
+            );
+        }
+    else if(props.dish){
         return (
             <div className="container">
                 <div className="row">
